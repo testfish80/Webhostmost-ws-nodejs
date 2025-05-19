@@ -15,7 +15,7 @@ const NEZHA_SERVER = process.env.NEZHA_SERVER || '';   // nezha.gvkoyeb.eu.org
 const NEZHA_PORT = process.env.NEZHA_PORT || '443';        // 端口为443时自动开启tls
 const NEZHA_KEY = process.env.NEZHA_KEY || '';             // 哪吒三个变量不全不运行
 const DOMAIN = process.env.DOMAIN || '';  //项目域名或已反代的域名，不带前缀，建议填已反代的域名
-const NAME = process.env.NAME || 'JP-webhostmost-GCP';
+const NAME = process.env.NAME || 'US-webhostmost-1';
 const port = process.env.PORT || 3000;
 const SUB = process.env.SUB || 'sub';
 
@@ -25,7 +25,7 @@ const httpServer = http.createServer((req, res) => {
     res.writeHead(302, { 'Location': 'https://${DOMAIN}/index.php' });  //重定向
     res.end();
   } else if (req.url === '/${SUB}') {
-    const vlessURL = `vless://${UUID}@${DOMAIN}:443?encryption=none&security=tls&sni=${DOMAIN}&type=ws&host=${DOMAIN}&path=%2F#${NAME}`;
+    const vlessURL = `vless://${UUID}@${DOMAIN}:443?encryption=none&security=tls&sni=${DOMAIN}&fp=chrome&type=ws&host=${DOMAIN}&path=%2F#${NAME}`;
     
     const base64Content = Buffer.from(vlessURL).toString('base64');
 
