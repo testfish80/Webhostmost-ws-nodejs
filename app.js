@@ -22,8 +22,8 @@ const SUB = process.env.SUB || 'sub';
 // 创建HTTP路由
 const httpServer = http.createServer((req, res) => {
   if (req.url === '/') {
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Not Found\n');
+    res.writeHead(302, { 'Location': 'https://${DOMAIN}/index.php' });  //重定向
+    res.end();
   } else if (req.url === '/${SUB}') {
     const vlessURL = `vless://${UUID}@${DOMAIN}:443?encryption=none&security=tls&sni=${DOMAIN}&type=ws&host=${DOMAIN}&path=%2F#${NAME}`;
     
