@@ -17,13 +17,14 @@ const NEZHA_KEY = process.env.NEZHA_KEY || '';             // 哪吒三个变量
 const DOMAIN = process.env.DOMAIN || '';  //项目域名或已反代的域名，不带前缀，建议填已反代的域名
 const NAME = process.env.NAME || 'JP-webhostmost-GCP';
 const port = process.env.PORT || 3000;
+const SUB = process.env.SUB || 'sub';
 
 // 创建HTTP路由
 const httpServer = http.createServer((req, res) => {
   if (req.url === '/') {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello, World\n');
-  } else if (req.url === '/sub') {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Not Found\n');
+  } else if (req.url === '/${SUB}') {
     const vlessURL = `vless://${UUID}@${DOMAIN}:443?encryption=none&security=tls&sni=${DOMAIN}&type=ws&host=${DOMAIN}&path=%2F#${NAME}`;
     
     const base64Content = Buffer.from(vlessURL).toString('base64');
