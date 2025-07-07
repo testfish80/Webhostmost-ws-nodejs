@@ -34,7 +34,7 @@ const httpServer = http.createServer((req, res) => {
     res.end(base64Content + '\n');
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Not Found\n');
+    res.end('${req.url} Not Found\n');
   }
 });
 
